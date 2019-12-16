@@ -1,0 +1,84 @@
+<nav class="mt-3">
+    <a class="ml-4" routerLink="/employees">Employees</a>
+</nav>
+<div class="card">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <form #numForm="ngForm" (ngSubmit)="onAddSubmit(numForm)">
+                    <h5 class="mb-3 text-secondary text-uppercase">Addition</h5>
+                    <div  *ngFor="let input of inputs; let i = index;">
+                        <div class="form-group">
+                            <div class="d-flex">
+                                <label> Number {{i+1}}: *</label>
+                                <a class="text-danger ml-auto" (click)="removeInput(i)" style="cursor: pointer">Remove</a>
+                            </div>
+                            <input type="text" class="form-control" name="num_{{input.inputName}}" [(ngModel)]="input.input"
+                                placeholder="Enter number {{i+1}}" required>
+                        </div>
+                    </div>
+                    <div *ngIf="errorMessage!=''" class="text-danger">{{errorMessage}}</div>
+                    <div class="form-group">
+                        <div class="d-flex">
+                            <button class="btn btn-sm btn-primary ml-auto" (click)="addInput()" type="button">Add input</button>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-primary" type="submit" [disabled]="!numForm.valid">Submit</button>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label> Sum: </label>
+                        <input type="text" name="position" class="form-control" readonly value={{sum}}>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-4">
+                <form #stringEval="ngForm" (ngSubmit)="onStringEval(stringEval)">
+                    <h5 class="mb-3 text-secondary text-uppercase">Evaluation</h5>
+                    <div class="form-group">
+                        <label> Input: *</label>
+                        <input type="text" name="name" class="form-control" name="string_input"
+                            [(ngModel)]="string_input" placeholder="Enter input" required>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-primary" type="submit" [disabled]="!stringEval.valid">Submit</button>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label> Output: </label>
+                        <input type="text" name="position" class="form-control" readonly value={{math_eval_output}}>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label> Eval output: </label>
+                        <input type="text" name="position" class="form-control" readonly value={{eval_output}}>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-4">
+                <form #arrForm="ngForm" (ngSubmit)="onArrEval(arrForm)">
+                    <h5 class="mb-3 text-secondary text-uppercase">First and second Highest</h5>
+                    <!-- <small>Enter comma seperated values</small> -->
+                    <div class="form-group">
+                        <label> Input: *</label>
+                        <input type="text" name="name" class="form-control" name="arr_input"
+                            [(ngModel)]="arr_input" placeholder="Enter input" required>
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-primary" type="submit" [disabled]="!arrForm.valid">Submit</button>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label> First Highest: </label>
+                        <input type="text" name="position" class="form-control" readonly value={{first_largest}}>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label> Second Highest: </label>
+                        <input type="text" name="position" class="form-control" readonly value={{second_largest}}>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>x
